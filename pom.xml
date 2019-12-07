@@ -175,6 +175,21 @@
       <version>${mysql.version}</version>
       <scope>runtime</scope>
     </dependency>
+
+    <!-- jedis数据库相关 -->
+    <dependency>
+      <groupId>redis.clients</groupId>
+      <artifactId>jedis</artifactId>
+      <version>2.7.0</version>
+    </dependency>
+
+    <!--邮件工具类-->
+    <dependency>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>javax.mail</artifactId>
+      <version>1.5.3</version>
+    </dependency>
+
   </dependencies>
 
   <build>
