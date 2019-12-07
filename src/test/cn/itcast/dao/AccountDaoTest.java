@@ -24,7 +24,7 @@ public class AccountDaoTest {
         //获取代理对象
         AccountDao dao = session.getMapper(AccountDao.class);
         //执行方法
-        Account account = new Account("lisi", (double) 1000);
+        Account account = new Account("张三", (double) 1000);
         dao.save(account);
         //释放资源
         session.commit();
@@ -51,4 +51,6 @@ public class AccountDaoTest {
         session.close();
         in.close();
     }
+
+
 }
