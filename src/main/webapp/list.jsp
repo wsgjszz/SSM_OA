@@ -12,6 +12,31 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script>
+        $(function () {
+            $.get("department/page",{"currentPage":1},function (result) {
+                //解析并显示数据
+                bulid_deps(result);
+            })
+
+            //构建部门表
+            function bulid_deps(result) {
+                var deps=result.extend.pageInfo.list;
+                $.each(deps,function (index,item) {
+                    var depIdTd = $("<td></td>").append(item.dep_id);
+                    var depNameTd = $("<td></td>").append(item.dep_name);
+                    var depNumTd = $("<td></td>").append(item.dep_num);
+                    var editBtn = $("<button></button>").addClass("btn btn-primary btn-sm").append("<span></span>").addClass("glyphicon glyphicon-pencil").append("编辑");
+                    var deleteBtn = $("<button></button>").addClass("btn btn-danger btn-sm").append("<span></span>").addClass("glyphicon glyphicon-trash").append("删除");
+                    //由于append()返回原来的元素，因此可以链式编程
+                    $("<tr></tr>").append(depIdTd).append(depNameTd).append(depNumTd).append(editBtn).append(deleteBtn).appendTo("#dep_table tbody");
+                })
+            }
+            //构建分页条
+            function bulid_page(result) {
+            }
+        })
+    </script>
 </head>
 <body>
 <!-- 搭建显示页面 -->
@@ -32,28 +57,17 @@
     <!-- 显示表格数据 -->
     <div class="row">
         <div class="col-md-12">
-            <table class="table table-hover">
-                <tr>
-                    <th>#</th>
-                    <th>部门名称</th>
-                    <th>部门人数</th>
-                    <th>操作</th>
-                </tr>
-                <c:forEach items="${pageInfo.list}" var="dep">
+            <table class="table table-hover" id="dep_table">
+                <thead>
                     <tr>
-                        <td>${dep.dep_id}</td>
-                        <td>${dep.dep_name}</td>
-                        <td>${dep.dep_num}</td>
-                        <td>
-                            <button class="btn btn-primary btn-sm">
-                                <span class="glyphicon glyphicon-pencil"></span>
-                                编辑</button>
-                            <button class="btn btn-danger btn-sm">
-                                <span class="glyphicon glyphicon-trash"></span>
-                                删除</button>
-                        </td>
+                        <th>#</th>
+                        <th>部门名称</th>
+                        <th>部门人数</th>
+                        <th>操作</th>
                     </tr>
-                </c:forEach>
+                </thead>
+                <tbody>
+                </tbody>
             </table>
         </div>
     </div>

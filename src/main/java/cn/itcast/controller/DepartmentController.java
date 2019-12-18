@@ -2,6 +2,7 @@ package cn.itcast.controller;
 
 
 import cn.itcast.domain.Department;
+import cn.itcast.domain.Msg;
 import cn.itcast.service.DepartmentService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -35,7 +36,7 @@ public class DepartmentController {
         return mv;
     }
 
-    //@RequestMapping("/page")
+    @RequestMapping("/page2")
     public String QueryList(@RequestParam(value = "currentPage",defaultValue = "1") Integer currentPage,Model model){
 
         //引入分页查询插件
@@ -53,7 +54,7 @@ public class DepartmentController {
 
     @RequestMapping("/page")
     @ResponseBody
-    public PageInfo QueryListWithJson(@RequestParam(value = "currentPage",defaultValue = "1") Integer currentPage){
+    public Msg QueryListWithJson(@RequestParam(value = "currentPage",defaultValue = "1") Integer currentPage){
         //引入分页查询插件
         PageHelper.startPage(currentPage,5);
         //后面紧跟着的查询就是分页查询
@@ -61,6 +62,7 @@ public class DepartmentController {
         //使用pageInfo包装查询后的结果，然后只需将pageInfo传递给页面即可
         //封装详细的分页信息和查询得到的数据，传入连续显示的页数
         PageInfo pageInfo = new PageInfo(deps,5);
-        return pageInfo;
+        //成功返回
+        return Msg.success().add("pageInfo",pageInfo);
     }
 }
