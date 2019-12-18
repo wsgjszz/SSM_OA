@@ -23,7 +23,7 @@ public class AccountController {
     public ModelAndView findAll(){
         //创建ModelAndView对象
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("list");
+        mv.setViewName("list2");
         System.out.println("表现层：查询所有账户...");
         //执行业务层方法
         List<Account> list = accountService.findAll();

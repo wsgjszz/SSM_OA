@@ -3,7 +3,8 @@ package cn.itcast.domain;
 import java.io.Serializable;
 
 public class User implements Serializable {
-    private Integer id;
+
+    private Integer user_id;
     private String username;
     private String password;
 
@@ -15,12 +16,12 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getUser_id() {
+        return user_id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setUser_id(Integer user_id) {
+        this.user_id = user_id;
     }
 
     public String getUsername() {
@@ -42,7 +43,7 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "user_id=" + user_id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';

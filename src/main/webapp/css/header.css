@@ -1,0 +1,14 @@
+#banner{
+
+}
+#user_banner{
+    float: right;
+    padding-top: 12px;
+}
+#user_banner span{
+    margin-right: 8px;
+}
+#btn_quit{
+    float: right;
+    margin-top: 5px;
+}
