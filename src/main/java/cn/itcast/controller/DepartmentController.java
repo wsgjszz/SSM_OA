@@ -17,7 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/department")
+@RequestMapping("/dep")
 public class DepartmentController {
 
     @Autowired
@@ -49,7 +49,7 @@ public class DepartmentController {
         model.addAttribute("pageInfo",pageInfo);
         System.out.println("deps:"+deps);
         System.out.println("pageInfo:"+pageInfo);
-        return "list";
+        return "list_dep";
     }
 
     @RequestMapping("/page")

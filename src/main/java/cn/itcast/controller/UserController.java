@@ -41,7 +41,7 @@ public class UserController {
                     //登录成功
                     mv.addObject("user",user);
                     request.getSession().setAttribute("user",user);
-                    mv.setViewName("success");
+                    mv.setViewName("index");
                 }else {
                     //登录失败
                     mv.addObject("login_msg","用户名或密码错误！");
@@ -52,8 +52,8 @@ public class UserController {
 
     }
 
-    @RequestMapping("delete")
-    public void login_delete(HttpServletRequest request){
+    @RequestMapping("/quit")
+    public void quit(HttpServletRequest request){
         request.getSession().removeAttribute("user");
     }
 

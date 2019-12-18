@@ -14,7 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
     <script>
         $(function () {
-            $.get("department/page",{"currentPage":1},function (result) {
+            $.get("emp/page",{"currentPage":1},function (result) {
                 //解析并显示数据
                 bulid_deps(result);
             })
@@ -24,16 +24,19 @@
                 var deps=result.extend.pageInfo.list;
                 $.each(deps,function (index,item) {
                     var depIdTd = $("<td></td>").append(item.dep_id);
-                    var depNameTd = $("<td></td>").append(item.dep_name);
-                    var depNumTd = $("<td></td>").append(item.dep_num);
+                    var empNameTd = $("<td></td>").append(item.emp_name);
+                    var empPosTd = $("<td></td>").append(item.emp_position);
+                    var empSexTd = $("<td></td>").append(item.emp_gender);
+                    var empAgeTd = $("<td></td>").append(item.emp_age);
                     var editBtn = $("<button></button>").addClass("btn btn-primary btn-sm").append("<span></span>").addClass("glyphicon glyphicon-pencil").append("编辑");
                     var deleteBtn = $("<button></button>").addClass("btn btn-danger btn-sm").append("<span></span>").addClass("glyphicon glyphicon-trash").append("删除");
                     //由于append()返回原来的元素，因此可以链式编程
-                    $("<tr></tr>").append(depIdTd).append(depNameTd).append(depNumTd).append(editBtn).append(deleteBtn).appendTo("#dep_table tbody");
+                    $("<tr></tr>").append(depIdTd).append(empNameTd).append(empPosTd).append(empSexTd).append(empAgeTd).append(editBtn).append(deleteBtn).appendTo("#dep_table tbody");
                 })
             }
             //构建分页条
             function bulid_page(result) {
+                
             }
         })
     </script>
@@ -44,7 +47,7 @@
     <!-- 标题 -->
     <div class="row">
         <div class="col-md-12">
-            <h1>部门管理</h1>
+            <h1>员工管理</h1>
         </div>
     </div>
     <!-- 按钮 -->
@@ -60,9 +63,11 @@
             <table class="table table-hover" id="dep_table">
                 <thead>
                     <tr>
-                        <th>#</th>
-                        <th>部门名称</th>
-                        <th>部门人数</th>
+                        <th>部门</th>
+                        <th>姓名</th>
+                        <th>职位</th>
+                        <th>性别</th>
+                        <th>年龄</th>
                         <th>操作</th>
                     </tr>
                 </thead>
