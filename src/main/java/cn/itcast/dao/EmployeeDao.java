@@ -12,6 +12,6 @@ public interface EmployeeDao {
     /**
      * 查询employee表的所有数据
      */
-    @Select("select * from employee")
+    @Select("SELECT emp_id,emp_name,emp_position,emp_gender,emp_age,dep_name FROM employee LEFT JOIN department ON department.dep_id=employee.dep_id;")
     public List<Employee> findAll();
 }

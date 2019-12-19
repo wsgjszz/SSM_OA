@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>首页</title>
-    <link rel="stylesheet" href="/oa/css/left.css" type="text/css"/>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/left.css" type="text/css"/>
     <!-- 引入Vue -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
@@ -39,21 +39,21 @@
                 <li class="list">
                     <h2><i></i>架构管理</h2>
                     <div class="hide">
-                        <a href="javascript:void(0)" @click="changeSrc('list_dep.jsp')"><h5>部门管理</h5></a>
-                        <a href="javascript:void(0)" @click="changeSrc('list_emp.jsp')"><h5>员工管理</h5></a>
+                        <a href="javascript:void(0)" @click="changeSrc('${pageContext.request.contextPath}/list_dep.jsp')"><h5>部门管理</h5></a>
+                        <a href="javascript:void(0)" @click="changeSrc('${pageContext.request.contextPath}/list_emp.jsp')"><h5>员工管理</h5></a>
                     </div>
                 </li>
                 <li class="list">
                     <h2><i></i>安全</h2>
                     <div class="hide">
-                        <a href="javascript:void(0)" @click="changeSrc('add.jsp')"><h5>修改密码</h5></a>
+                        <a href="javascript:void(0)" @click="changeSrc('${pageContext.request.contextPath}/add.jsp')"><h5>修改密码</h5></a>
                     </div>
                 </li>
             </ul>
         </div>
     </div>
     <div id="header">
-        <iframe style="float: left" height="5%" width="80%" src="/oa/header.jsp"></iframe>
+        <iframe style="float: left" height="5%" width="80%" src="${pageContext.request.contextPath}/header.jsp"></iframe>
     </div>
     <br>
     <div id="content">
@@ -64,7 +64,7 @@
     var app=new Vue({
         el: "#app",
         data:{
-            iframeSrc:"/oa/first.jsp"
+            iframeSrc:"${pageContext.request.contextPath}/first.jsp"
         },
         methods:{
             changeSrc:function (src) {

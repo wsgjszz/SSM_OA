@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -53,8 +54,24 @@ public class UserController {
     }
 
     @RequestMapping("/quit")
-    public void quit(HttpServletRequest request){
+    public String quit(HttpServletRequest request,HttpServletResponse response){
+        //删除cookie和session中的user数据
         request.getSession().removeAttribute("user");
+
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null && cookies.length > 0) {
+            for (Cookie c : cookies) {
+                if ("user".equals(c.getName())) {
+                    //设置cookie存活时间为0
+                    c.setMaxAge(0);
+                    //将cookie响应到前台
+                    response.addCookie(c);
+                    break;
+                }
+            }
+        }
+
+        return "index";
     }
 
 }

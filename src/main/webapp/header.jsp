@@ -25,13 +25,17 @@
     <script>
         $(function () {
             var user="<%=pageContext.getSession().getAttribute("user")%>";
-            if (user!=null){
-                $("#btn_quit").addClass("btn-success").onclick(function () {
-                    location.href="/oa/login.jsp";
+            if (user==null || user=="null" || user==""){
+                //用户未登录
+                $("#btn_quit").addClass("btn-success").click(function () {
+                    window.close();
+                    window.open("login.jsp");
+                    /*location.href="login.jsp";*/
                 });
             }else {
-                $("#btn_quit").addClass("btn-danger").onclick(function () {
-                    location.href="/oa/login.jsp";
+                //用户已登录
+                $("#btn_quit").addClass("btn-danger").click(function () {
+                    location.href="user/quit";
                 });
             }
         })

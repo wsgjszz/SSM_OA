@@ -37,3 +37,7 @@ SELECT * FROM employee;
 INSERT INTO employee VALUES(NULL,"张三","部长","男",22,1);
 INSERT INTO employee VALUES(NULL,"李四","员工","女",19,1);
 INSERT INTO employee VALUES(NULL,"王五","员工","女",27,1);
+INSERT INTO employee VALUES(NULL,"张三","部长","男",22,2);
+INSERT INTO employee VALUES(NULL,"李四","员工","女",19,2);
+INSERT INTO employee VALUES(NULL,"王五","员工","女",27,2);
+INSERT INTO employee VALUES(NULL,"赵六","员工","男",19,2);

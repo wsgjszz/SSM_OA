@@ -15,15 +15,19 @@
     <script>
         $(function () {
             $.get("emp/page",{"currentPage":1},function (result) {
-                //解析并显示数据
+                //解析并显示员工数据
                 bulid_deps(result);
+                //解析并显示分页信息
+                bulid_page_info(result);
+                //解析并显示分页条
+                bulid_page_nav(result);
             })
 
             //构建部门表
             function bulid_deps(result) {
                 var deps=result.extend.pageInfo.list;
                 $.each(deps,function (index,item) {
-                    var depIdTd = $("<td></td>").append(item.dep_id);
+                    var depNameTd = $("<td></td>").append(item.dep_name);
                     var empNameTd = $("<td></td>").append(item.emp_name);
                     var empPosTd = $("<td></td>").append(item.emp_position);
                     var empSexTd = $("<td></td>").append(item.emp_gender);
@@ -31,12 +35,39 @@
                     var editBtn = $("<button></button>").addClass("btn btn-primary btn-sm").append("<span></span>").addClass("glyphicon glyphicon-pencil").append("编辑");
                     var deleteBtn = $("<button></button>").addClass("btn btn-danger btn-sm").append("<span></span>").addClass("glyphicon glyphicon-trash").append("删除");
                     //由于append()返回原来的元素，因此可以链式编程
-                    $("<tr></tr>").append(depIdTd).append(empNameTd).append(empPosTd).append(empSexTd).append(empAgeTd).append(editBtn).append(deleteBtn).appendTo("#dep_table tbody");
+                    $("<tr></tr>").append(depNameTd).append(empNameTd).append(empPosTd).append(empSexTd).append(empAgeTd).append(editBtn).append(deleteBtn).appendTo("#dep_table tbody");
                 })
             }
+
+            //构建分页信息
+            function bulid_page_info(result) {
+                //当前记录数为：xxx
+                var total = result.extend.pageInfo.total;
+                var total_page = parseInt(result.extend.pageInfo.total/5)+1;
+                $("#page_info").append("当前记录数为："+total+",共 "+total_page+" 页");
+            }
+
             //构建分页条
-            function bulid_page(result) {
-                
+            function bulid_page_nav(result) {
+                var ul = $("<ul></ul>").addClass("pagination");
+                var firstPageLi = $("<li></li>").append($("<a></a>").append("首页").attr("href","#"));
+                var PrePageLi = $("<li></li>").append($("<a></a>").append("&laquo;").attr("href","#"));
+                var NextPageLi = $("<li></li>").append($("<a></a>").append("&raquo;").attr("href","#"));
+                var endPageLi = $("<li></li>").append($("<a></a>").append("尾页").attr("href","#"));
+
+                //添加首页和前一页
+                ul.append(firstPageLi).append(PrePageLi);
+                //添加页码
+                $.each(result.extend.pageInfo.navigatepageNums,function (index, item) {
+                    var NumLi = $("<li></li>").append($("<a></a>").append(item).attr("href","#"));;
+                    ul.append(NumLi);
+                })
+                //添加尾页和下一页
+                ul.append(NextPageLi).append(endPageLi);
+
+                $("<nav></nav>").append(ul).attr("aria-label","Page navigation").appendTo("#page_nav");
+
+
             }
         })
     </script>
@@ -79,33 +110,9 @@
     <!-- 显示分页信息 -->
     <div class="row">
         <!-- 分页条信息 -->
-        <div class="col-md-6">
-            <nav aria-label="Page navigation">
-                <ul class="pagination">
-                    <li><a href="#">首页</a></li>
-                    <li>
-                        <a href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                        </a>
-                    </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
-                    <li><a href="#">尾页</a></li>
-                </ul>
-            </nav>
-        </div>
+        <div class="col-md-6" id="page_nav"></div>
         <!-- 分页文字信息 -->
-        <div class="col-md-6">
-            当前记录数为：xxx
-        </div>
+        <div class="col-md-6" id="page_info"></div>
     </div>
 </div>
 </body>

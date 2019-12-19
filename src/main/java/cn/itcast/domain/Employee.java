@@ -10,6 +10,15 @@ public class Employee implements Serializable {
     private String emp_gender;
     private Integer emp_age;
     private Integer dep_id;
+    private String dep_name;
+
+    public String getDep_name() {
+        return dep_name;
+    }
+
+    public void setDep_name(String dep_name) {
+        this.dep_name = dep_name;
+    }
 
     public Employee() {
     }
@@ -80,6 +89,7 @@ public class Employee implements Serializable {
                 ", emp_gender='" + emp_gender + '\'' +
                 ", emp_age=" + emp_age +
                 ", dep_id=" + dep_id +
+                ", dep_name='" + dep_name + '\'' +
                 '}';
     }
 }
