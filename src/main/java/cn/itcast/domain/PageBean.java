@@ -2,6 +2,10 @@ package cn.itcast.domain;
 
 import java.util.List;
 
+/**
+ * 分页实体类
+ * @param <T>
+ */
 public class PageBean<T> {
     private int totalCounts; //总记录数
     private int totalPages; //总页码
