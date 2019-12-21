@@ -10,10 +10,10 @@ public class PageBeanInfoTest {
     public void test(){
         PageBean<Employee> pageBean = new PageBean<>();
         pageBean.setPageSize(5);
-        pageBean.setCurrentPage(1);
-        pageBean.setTotalCounts(33);
-        pageBean.setTotalPages(7);
-        PageBeanInfo pageBeanInfo = new PageBeanInfo(pageBean, 3);
+        pageBean.setCurrentPage(6);
+        pageBean.setTotalCounts(44);
+        pageBean.setTotalPages(9);
+        PageBeanInfo pageBeanInfo = new PageBeanInfo(pageBean, 5);
         System.out.println(pageBeanInfo);
     }
 }
