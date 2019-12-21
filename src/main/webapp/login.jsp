@@ -17,6 +17,9 @@
             var vcode = document.getElementById("vcode");
             vcode.src="${APP_PATH}/utils/checkCode?Time="+new Date().getTime();
         }
+        function close() {
+            document.getElementById("err_msg").style.display=none;
+        }
     </script>
 </head>
 <body>
@@ -44,13 +47,16 @@
         </div>
     </form>
 
-    <!-- 出错时显示的信息框 -->
-    <div class="alert alert-warning alert-dismissible" role="alert">
-        <button type="button" class="close">
-            <span>x</span>
-        </button>
-        <strong>${login_msg}</strong>
-    </div>
+    <c:if test="${!empty login_msg}">
+        <!-- 出错时显示的信息框 -->
+        <div class="alert alert-warning alert-dismissible" role="alert" id="err_msg">
+            <button type="button" class="close" onclick="close()" >
+                <span>x</span>
+            </button>
+            <strong>${login_msg}</strong>
+        </div>
+    </c:if>
+
 </div>
 </body>
 </html>
